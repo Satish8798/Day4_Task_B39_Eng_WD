@@ -1,0 +1,81 @@
+//Question 1:
+
+//given objects
+var obj1={name: 'Person 1', age: 5};
+var obj2={age: 5, name: 'Person 1'};
+
+//creating a paramter function for comparing given two objects
+function areObjectsEqual(object1, object2){
+    const keys1=Object.keys(object1); //getting the array of keys for first object
+    const keys2=Object.keys(object2); //getting the array of keys for second object
+
+    //comparing the length of objects
+    if(keys1.length !==keys2.length){
+        return false;
+    }
+
+    //comparing the values of objects
+    for(let key of keys1){
+        if(object1[key]!==object2[key]){
+            return false;
+        }
+    }
+    return true;
+}
+console.log(areObjectsEqual(obj1,obj2)); //output: true
+
+-----------------------------------------------
+
+//Question 2:
+
+//make a http request
+//create an instance of the request
+let xhr=new XMLHttpRequest();
+
+//Open your request
+xhr.open("GET","https://restcountries.com/v3.1/all");
+
+//onload event (server will listen to request and process data )
+xhr.onload=function(){
+let data=JSON.parse(xhr.responseText)//converted data into object
+
+//Loop throigh the data and print it on the console
+for(let i=0;i<data.length;i++){
+
+    //flags of all countries in png and svg format
+    console.log(`
+    ${data[i].name.common}:
+    png format:${data[i].flags.png}
+    svg format:${data[i].flags.svg}`)
+}
+}
+//send the request
+xhr.send();
+
+//--------------------------------------------
+
+//Question 3:
+
+//make a http request
+//create an instance of the request
+let xhr=new XMLHttpRequest();
+
+//Open your request
+xhr.open("GET","https://restcountries.com/v3.1/all");
+
+//onload event (server will listen to request and process data )
+xhr.onload=function(){
+let data=JSON.parse(xhr.responseText)//converted data into object
+
+//Loop throigh the data and print it on the console
+for(let i=0;i<data.length;i++){
+//country name, region, subregion and popution
+    console.log(`
+    Name: ${data[i].name.common}
+    Region: ${data[i].region}
+    Sub Region: ${data[i].subregion}
+    Population: ${data[i].population}`)
+}
+}
+//send the request
+xhr.send();
